@@ -15,9 +15,8 @@ export const event = {
   dateNumeric: '08 · 01',
   timeStart: '1:00 PM',
   timeRange: '1:00 PM – 4:00 PM',
-  // TODO: friendly venue / room name for "The Air Park" (the clubhouse, etc.).
-  venueName: 'The Air Park',
-  address: '1199 Shadow Ln #1093, Nashville, TN 37206',
+  venueName: 'Cornelia Fort Airpark',
+  address: 'Cornelia Fort Airpark at Shelby Bottoms · Nashville, TN 37206',
   dressCode: 'Sunny & casual',
   // TODO: confirm the RSVP "boarding closes" deadline date.
   boardingCloses: 'TODO — RSVP deadline',
@@ -55,7 +54,7 @@ export const boardingPass = {
     { k: 'Passenger', v: 'You + 1 little guest of honor' },
     { k: 'Date', v: 'Sat, Aug 1' },
     { k: 'Boarding time', v: '1:00 PM' },
-    { k: 'Gate', v: 'The Air Park, Nashville' }, // TODO: venue display name
+    { k: 'Gate', v: 'Cornelia Fort Airpark' },
     { k: 'Flight attire', v: 'Sunny & casual' },
     { k: 'Boarding closes', v: 'TODO (RSVP)' }
   ],
@@ -114,7 +113,14 @@ export const finn = {
   badgeTitle: 'SECURITY CLEARANCE',
   name: 'Finn',
   role: 'Head of Security · K-9 Unit',
-  photo: '/finn.png',
+  // Real photo of Finn (in his pumpkin costume) for the ID badge.
+  photo: '/finn-photo.jpg',
+  // The full "Ruff Watch" security-clearance dossier, shown full-size beside
+  // the badge so the small print is readable.
+  dossier: '/finn-dossier.jpg',
+  dossierAlt:
+    'Finn’s "Ruff Watch Canine Security" dossier — Ruff Report, Woof List, ' +
+    'Sniff-Cam feeds and a 87% bark-readiness meter. Chief Barking Officer: Finnegan Peters.',
   intro:
     'All flights are secured by our Head of K-9 Security. Please have treats ready for inspection.',
   rows: [
@@ -145,11 +151,21 @@ export const refreshments = {
 
 /** Navigation / ground-control info rows. */
 export const navigation = [
-  { k: 'Airfield', v: 'The Air Park' }, // TODO: venue display name
-  { k: 'Address', v: '1199 Shadow Ln #1093, Nashville, TN 37206' },
+  { k: 'Airfield', v: 'Cornelia Fort Airpark' },
+  { k: 'Address', v: 'Cornelia Fort Airpark at Shelby Bottoms, Nashville, TN 37206' },
   { k: 'Parking', v: 'TODO — parking details' },
   { k: 'Ground crew', v: 'TODO — name · phone' }
 ];
+
+/**
+ * Embedded map of the location. `embed` is a keyless Google Maps embed; `link`
+ * opens the original pin (Cornelia Fort Airpark at Shelby Bottoms) in Maps.
+ */
+export const map = {
+  embed:
+    'https://www.google.com/maps?q=Cornelia+Fort+Airpark+at+Shelby+Bottoms&output=embed',
+  link: 'https://maps.app.goo.gl/ck5gNGwnHu2RWWuT8'
+};
 
 /** RSVP form option lists. */
 export const ATTENDING_VALUES = /** @type {const} */ (['yes', 'no']);

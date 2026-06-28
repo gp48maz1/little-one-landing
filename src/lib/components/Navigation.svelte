@@ -1,5 +1,5 @@
 <script>
-  import { navigation } from '$lib/data.js';
+  import { navigation, map } from '$lib/data.js';
 </script>
 
 <section class="nav2 pad" id="navigation">
@@ -12,20 +12,18 @@
           <div class="infoline"><span class="k">{line.k}</span><span class="v">{line.v}</span></div>
         {/each}
       </div>
-      <div class="map" aria-label="Stylized airfield map">
-        <div class="runway" aria-hidden="true"></div>
-        <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
-          style="position:absolute;top:14px;right:16px"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <circle cx="20" cy="20" r="17" fill="none" stroke="#4E84A4" stroke-width="2" />
-          <path d="M20 5 L24 20 L20 35 L16 20 Z" fill="#E9B949" />
-          <text x="20" y="3" text-anchor="middle" font-size="7" fill="#4E84A4" font-family="monospace">N</text>
-        </svg>
+      <div class="mapwrap">
+        <iframe
+          class="map"
+          title="Map to the airfield"
+          src={map.embed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+        <a class="maplink" href={map.link} target="_blank" rel="noopener noreferrer">
+          Open in Google Maps ↗
+        </a>
       </div>
     </div>
   </div>
@@ -45,42 +43,36 @@
   .info {
     flex: 1 1 280px;
   }
-  .map {
+  .mapwrap {
     flex: 1 1 300px;
-    height: 220px;
     border-radius: 16px;
     border: 1px solid var(--line);
-    background:
-      repeating-linear-gradient(0deg, rgba(159, 203, 227, 0.18) 0 1px, transparent 1px 26px),
-      repeating-linear-gradient(90deg, rgba(159, 203, 227, 0.18) 0 1px, transparent 1px 26px),
-      var(--cream);
-    position: relative;
     overflow: hidden;
     box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: var(--cream);
+    position: relative;
   }
-  .runway {
-    position: absolute;
-    left: 18%;
-    top: 60%;
-    width: 64%;
-    height: 14px;
-    background: var(--ink);
-    border-radius: 8px;
-    transform: rotate(-18deg);
-    box-shadow: 0 0 0 6px rgba(57, 54, 47, 0.06);
+  .map {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 0;
   }
-  .runway::after {
-    content: '';
-    position: absolute;
-    left: 8px;
-    right: 8px;
-    top: 50%;
-    height: 2px;
-    transform: translateY(-50%);
-    background: repeating-linear-gradient(90deg, var(--lemon) 0 10px, transparent 10px 20px);
+  .maplink {
+    display: block;
+    text-align: center;
+    padding: 9px 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sky-deep);
+    text-decoration: none;
+    border-top: 1px solid var(--line);
+    background: var(--cream-2);
+  }
+  .maplink:hover {
+    color: var(--navy);
   }
   .infoline {
     display: flex;

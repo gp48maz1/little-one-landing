@@ -27,7 +27,6 @@ npm run preview  # wrangler dev (Miniflare) on :4173
 **All copy and logistics live in [`src/lib/data.js`](src/lib/data.js).** Edit that one file;
 every component reads from it. Search for `TODO` to find everything still using a placeholder:
 
-- Venue / room display name for "The Air Park" (the street address is set)
 - Registry links (currently `#`)
 - RSVP "boarding closes" deadline date
 - Ground-crew contact name + phone, and the parking note

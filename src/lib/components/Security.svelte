@@ -8,25 +8,33 @@
       <span class="n">03</span><h2>Airport security</h2>
     </div>
     <p class="ssub" style="margin-left:auto;margin-right:auto">{finn.intro}</p>
-    <div class="lanyard">
-      <div class="top">
-        <div class="hole" aria-hidden="true"></div>
-        <div class="org">{finn.org}</div>
-        <div class="ttl">{finn.badgeTitle}</div>
-      </div>
-      <div class="body">
-        <div class="photo">
-          <img src={finn.photo} alt="Finn, the Head of K-9 Security" />
+
+    <div class="security-grid">
+      <div class="lanyard">
+        <div class="top">
+          <div class="hole" aria-hidden="true"></div>
+          <div class="org">{finn.org}</div>
+          <div class="ttl">{finn.badgeTitle}</div>
         </div>
-        <div class="finnname">{finn.name}</div>
-        <div class="finnrole">{finn.role}</div>
-        <div class="finntable">
-          {#each finn.rows as row}
-            <div class="r"><span class="k">{row.k}</span><span class="v">{row.v}</span></div>
-          {/each}
+        <div class="body">
+          <div class="photo">
+            <img src={finn.photo} alt="Finn, the Head of K-9 Security" />
+          </div>
+          <div class="finnname">{finn.name}</div>
+          <div class="finnrole">{finn.role}</div>
+          <div class="finntable">
+            {#each finn.rows as row}
+              <div class="r"><span class="k">{row.k}</span><span class="v">{row.v}</span></div>
+            {/each}
+          </div>
+          <p class="finnbio">{finn.bio}</p>
         </div>
-        <p class="finnbio">{finn.bio}</p>
       </div>
+
+      <figure class="dossier">
+        <img src={finn.dossier} alt={finn.dossierAlt} />
+        <figcaption>Official Ruff Watch dossier · classified (mostly)</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -36,7 +44,17 @@
     background: linear-gradient(180deg, var(--cream) 0%, #f2f6ee 100%);
     border-top: 1px solid var(--line);
   }
+  .security-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    justify-content: center;
+    text-align: left;
+    margin-top: 8px;
+  }
   .lanyard {
+    width: 100%;
     max-width: 430px;
     margin: 0 auto;
     background: var(--cream);
@@ -44,6 +62,32 @@
     border-radius: 20px;
     box-shadow: var(--shadow);
     overflow: hidden;
+  }
+  .dossier {
+    margin: 0;
+  }
+  .dossier img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 18px;
+    border: 1px solid var(--sage);
+    box-shadow: var(--shadow);
+  }
+  .dossier figcaption {
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+  }
+  @media (max-width: 760px) {
+    .security-grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
   }
   .top {
     background: var(--sage-deep);
@@ -90,6 +134,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Finn's face sits left-of-centre in the pumpkin photo. */
+    object-position: 28% 38%;
     display: block;
   }
   .finnname {
