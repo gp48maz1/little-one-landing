@@ -44,15 +44,33 @@
           stroke-dasharray="2 12"
           stroke-linecap="round"
         />
-        <!-- plane at the end of the path -->
-        <g class="plane" transform="translate(806,70) rotate(-20)">
-          <path d="M-2 6 L34 30 L44 30 L18 6 Z" fill="#E9B949" />
-          <rect x="-46" y="-9" width="92" height="20" rx="10" fill="#F4D35E" stroke="#E9B949" stroke-width="2" />
-          <path d="M-46 0 L-66 -20 L-54 -1 Z" fill="#F4D35E" stroke="#E9B949" stroke-width="2" />
-          <path d="M-2 -6 L30 -30 L42 -30 L18 -6 Z" fill="#F7DE7E" stroke="#E9B949" stroke-width="2" />
-          <circle cx="22" cy="0" r="6" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2" />
-          <circle cx="4" cy="0" r="5" fill="#C9E5F2" stroke="#4E84A4" stroke-width="1.5" />
-          <rect x="46" y="-14" width="4" height="28" rx="2" fill="#7C6A2e" />
+        <!-- little yellow prop plane at the end of the path, nose up-and-right -->
+        <g class="plane" transform="translate(800,74) rotate(-16)">
+          <!-- tail fin -->
+          <path d="M-44 -7 L-57 -31 L-28 -9 Z" fill="#E9B949" />
+          <!-- horizontal stabilizer -->
+          <path d="M-42 4 L-63 0 L-42 -5 Z" fill="#E9B949" stroke="#E9B949" stroke-width="1.5" />
+          <!-- low wing, swept back -->
+          <path d="M6 7 L-20 34 L9 34 L31 9 Z" fill="#E9B949" />
+          <!-- fuselage -->
+          <path
+            d="M-53 0 C-50 -9 -24 -13 4 -13 C30 -13 49 -9 60 -1 C62 0 62 0 60 1 C49 9 30 13 4 13 C-24 13 -50 9 -53 0 Z"
+            fill="#F4D35E"
+            stroke="#E9B949"
+            stroke-width="2"
+          />
+          <!-- cabin windows -->
+          <circle cx="31" cy="-3" r="4.5" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2" />
+          <circle cx="15" cy="-2" r="4.5" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2" />
+          <circle cx="-1" cy="-1" r="4" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2" />
+          <!-- spinner + propeller at the nose -->
+          <circle cx="60" cy="0" r="3.5" fill="#7C6A2E" />
+          <rect x="61.5" y="-13" width="3" height="26" rx="1.5" fill="#7C6A2E" opacity="0.85" />
+          <!-- landing gear (it's coming in to land, after all) -->
+          <line x1="8" y1="12" x2="6" y2="25" stroke="#7C6A2E" stroke-width="2.5" stroke-linecap="round" />
+          <circle cx="5" cy="27" r="4" fill="#39362F" />
+          <line x1="-12" y1="12" x2="-14" y2="24" stroke="#7C6A2E" stroke-width="2.5" stroke-linecap="round" />
+          <circle cx="-15" cy="26" r="4" fill="#39362F" />
         </g>
       </svg>
     </div>
@@ -141,10 +159,10 @@
   @keyframes bob {
     0%,
     100% {
-      transform: translate(806px, 70px) rotate(-20deg);
+      transform: translate(800px, 74px) rotate(-16deg);
     }
     50% {
-      transform: translate(806px, 64px) rotate(-22deg);
+      transform: translate(800px, 68px) rotate(-18deg);
     }
   }
   @media (prefers-reduced-motion: reduce) {
