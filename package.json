@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "wrangler dev --port 4173",
-    "deploy": "npm run build && wrangler deploy",
+    "deploy": "wrangler deploy",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "cf-typegen": "wrangler types"
   },

@@ -4,6 +4,11 @@
   "account_id": "76f9adc0658bbf28ff6bf348957c2d4f",
   "compatibility_date": "2026-03-10",
   "compatibility_flags": ["nodejs_als"],
+  // Run the SvelteKit build before `wrangler deploy` so the Cloudflare Workers
+  // Builds CI (which only runs `npx wrangler deploy`) generates _worker.js.
+  "build": {
+    "command": "npm run build"
+  },
   "main": ".svelte-kit/cloudflare/_worker.js",
   "assets": {
     "binding": "ASSETS",

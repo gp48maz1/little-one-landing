@@ -44,33 +44,19 @@
           stroke-dasharray="2 12"
           stroke-linecap="round"
         />
-        <!-- little yellow prop plane at the end of the path, nose up-and-right -->
-        <g class="plane" transform="translate(800,74) rotate(-16)">
-          <!-- tail fin -->
-          <path d="M-44 -7 L-57 -31 L-28 -9 Z" fill="#E9B949" />
-          <!-- horizontal stabilizer -->
-          <path d="M-42 4 L-63 0 L-42 -5 Z" fill="#E9B949" stroke="#E9B949" stroke-width="1.5" />
-          <!-- low wing, swept back -->
-          <path d="M6 7 L-20 34 L9 34 L31 9 Z" fill="#E9B949" />
-          <!-- fuselage -->
-          <path
-            d="M-53 0 C-50 -9 -24 -13 4 -13 C30 -13 49 -9 60 -1 C62 0 62 0 60 1 C49 9 30 13 4 13 C-24 13 -50 9 -53 0 Z"
-            fill="#F4D35E"
-            stroke="#E9B949"
-            stroke-width="2"
-          />
-          <!-- cabin windows -->
-          <circle cx="31" cy="-3" r="4.5" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2" />
-          <circle cx="15" cy="-2" r="4.5" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2" />
-          <circle cx="-1" cy="-1" r="4" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2" />
-          <!-- spinner + propeller at the nose -->
-          <circle cx="60" cy="0" r="3.5" fill="#7C6A2E" />
-          <rect x="61.5" y="-13" width="3" height="26" rx="1.5" fill="#7C6A2E" opacity="0.85" />
-          <!-- landing gear (it's coming in to land, after all) -->
-          <line x1="8" y1="12" x2="6" y2="25" stroke="#7C6A2E" stroke-width="2.5" stroke-linecap="round" />
-          <circle cx="5" cy="27" r="4" fill="#39362F" />
-          <line x1="-12" y1="12" x2="-14" y2="24" stroke="#7C6A2E" stroke-width="2.5" stroke-linecap="round" />
-          <circle cx="-15" cy="26" r="4" fill="#39362F" />
+        <!-- plane at the end of the path: Material "flight" icon, nose up-right.
+             Positioned/rotated/animated from CSS (.plane) so reduced-motion keeps
+             the same resting placement. Inner group centres + scales the icon. -->
+        <g class="plane">
+          <g transform="scale(2.5) translate(-11.5 -12)">
+            <path
+              d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"
+              fill="#F4D35E"
+              stroke="#E9B949"
+              stroke-width="0.7"
+              stroke-linejoin="round"
+            />
+          </g>
         </g>
       </svg>
     </div>
@@ -154,15 +140,16 @@
   .plane {
     transform-box: fill-box;
     transform-origin: center;
+    transform: translate(836px, 74px) rotate(45deg);
     animation: bob 4s ease-in-out infinite;
   }
   @keyframes bob {
     0%,
     100% {
-      transform: translate(800px, 74px) rotate(-16deg);
+      transform: translate(836px, 74px) rotate(45deg);
     }
     50% {
-      transform: translate(800px, 68px) rotate(-18deg);
+      transform: translate(836px, 68px) rotate(48deg);
     }
   }
   @media (prefers-reduced-motion: reduce) {
