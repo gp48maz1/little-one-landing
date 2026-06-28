@@ -1,0 +1,120 @@
+/* Little One Landing — global tokens + shared utilities.
+   Ported from planning/little-one-landing-mockup.html. Section-specific styles
+   live scoped inside each component; only the palette, base body, and the
+   handful of classes shared across sections live here. */
+
+:root {
+  --lemon: #f4d35e;
+  --lemon-deep: #e9b949;
+  --butter: #fbefb8;
+  --sky: #9fcbe3;
+  --sky-soft: #c9e5f2;
+  --sky-deep: #4e84a4;
+  --navy: #243b4a;
+  --sage: #a3b18a;
+  --sage-deep: #7c8c63;
+  --kraft: #e4d2a6;
+  --kraft-line: #c9b381;
+  --cream: #fffdf5;
+  --cream-2: #faf4e4;
+  --ink: #39362f;
+  --ink-soft: #6e695e;
+  --line: #e7dfc8;
+  --shadow: 0 10px 34px rgba(57, 54, 47, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+section {
+  position: relative;
+}
+
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.mono {
+  font-family: 'Space Mono', monospace;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Primary call-to-action button, reused by Nav, Hero and the RSVP form. */
+.btn {
+  display: inline-block;
+  background: var(--lemon);
+  color: #5b4a12;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 999px;
+  border: 1px solid var(--lemon-deep);
+  box-shadow: 0 6px 18px rgba(233, 185, 73, 0.4);
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Shared section heading: numbered chip + Fraunces title + muted subhead. */
+.shead {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 6px;
+}
+.shead .n {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--sky-deep);
+  border: 1px solid var(--sky);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+.shead h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.ssub {
+  color: var(--ink-soft);
+  margin: 0 0 26px;
+  max-width: 620px;
+}
+
+.pad {
+  padding: 66px 0;
+}
+.pad-sm {
+  padding: 48px 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

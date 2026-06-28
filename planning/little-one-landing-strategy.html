@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little One Landing — Creative Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lemon:#F4D35E;      /* sunny lemon / Piper Cub yellow */
+    --butter:#FBEFB8;     /* soft buttercream */
+    --sky:#9FCBE3;        /* airfield sky blue */
+    --sky-deep:#5C90B0;   /* deeper sky / signage */
+    --sage:#A3B18A;       /* lemon leaf / runway grass */
+    --kraft:#D9C297;      /* boarding-pass kraft */
+    --cream:#FFFDF5;      /* paper */
+    --cream-2:#FAF4E4;    /* panel */
+    --ink:#39362F;        /* warm charcoal text */
+    --ink-soft:#6E695E;   /* muted text */
+    --line:#E7DFC8;
+    --shadow:0 8px 30px rgba(57,54,47,.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:"Nunito Sans",system-ui,sans-serif;line-height:1.6;font-size:17px;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px;}
+
+  /* Masthead */
+  .masthead{
+    background:
+      radial-gradient(120% 90% at 80% -10%, rgba(244,211,94,.55), transparent 55%),
+      radial-gradient(120% 90% at 0% 0%, rgba(159,203,227,.5), transparent 55%),
+      var(--cream-2);
+    border-bottom:1px solid var(--line);
+    padding:54px 0 46px;
+  }
+  .eyebrow{
+    font-family:"Space Mono",monospace;font-size:12.5px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--sky-deep);margin:0 0 14px;
+  }
+  h1{
+    font-family:"Fraunces",serif;font-weight:600;font-size:46px;line-height:1.04;
+    margin:0 0 10px;letter-spacing:-.01em;
+  }
+  .masthead .sub{font-size:18px;color:var(--ink-soft);max-width:620px;margin:0;}
+  .flightstrip{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;
+    font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.06em;
+  }
+  .flightstrip span{
+    background:var(--cream);border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;color:var(--ink-soft);
+  }
+  .flightstrip span b{color:var(--ink);}
+
+  section{padding:42px 0;border-bottom:1px solid var(--line);}
+  h2{
+    font-family:"Fraunces",serif;font-weight:600;font-size:27px;margin:0 0 6px;
+    letter-spacing:-.01em;display:flex;align-items:baseline;gap:12px;
+  }
+  h2 .n{
+    font-family:"Space Mono",monospace;font-size:13px;color:var(--sky-deep);
+    border:1px solid var(--sky);border-radius:6px;padding:2px 8px;letter-spacing:.05em;
+    position:relative;top:-2px;
+  }
+  h3{font-family:"Fraunces",serif;font-weight:600;font-size:19px;margin:26px 0 6px;}
+  p{margin:0 0 14px;}
+  .lead{font-size:18.5px;color:var(--ink);}
+  strong{color:var(--ink);}
+  .accent{font-family:"Pinyon Script",cursive;font-size:1.5em;color:var(--sky-deep);line-height:1;}
+
+  .card{
+    background:var(--cream-2);border:1px solid var(--line);border-radius:16px;
+    padding:20px 22px;margin:16px 0;box-shadow:var(--shadow);
+  }
+  .pill{
+    display:inline-block;font-family:"Space Mono",monospace;font-size:11px;
+    letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:999px;
+    background:var(--butter);color:#7a6212;border:1px solid #ecd98a;
+  }
+  .pill.sky{background:rgba(159,203,227,.3);color:var(--sky-deep);border-color:var(--sky);}
+  .pill.sage{background:rgba(163,177,138,.25);color:#5f6b46;border-color:var(--sage);}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0 6px;font-size:15.5px;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{
+    font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:700;
+  }
+  td .term{font-family:"Space Mono",monospace;font-size:13.5px;color:var(--ink-soft);}
+  td .arrow{color:var(--sky-deep);}
+  td .new{font-weight:700;color:var(--ink);}
+
+  /* structure list */
+  .floor{counter-reset:sec;}
+  .stop{
+    position:relative;padding:18px 0 18px 56px;border-bottom:1px dashed var(--line);
+  }
+  .stop:last-child{border-bottom:0;}
+  .stop::before{
+    counter-increment:sec;content:"0" counter(sec);
+    position:absolute;left:0;top:18px;width:38px;height:38px;border-radius:50%;
+    background:var(--cream);border:2px solid var(--sky);color:var(--sky-deep);
+    font-family:"Space Mono",monospace;font-size:13px;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .stop h4{margin:0 0 2px;font-family:"Fraunces",serif;font-size:18px;font-weight:600;}
+  .stop .alias{font-family:"Space Mono",monospace;font-size:12px;color:var(--sky-deep);letter-spacing:.04em;}
+  .stop p{margin:8px 0 0;font-size:15.5px;color:var(--ink-soft);}
+
+  /* swatches */
+  .swatches{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0;}
+  .sw{width:120px;}
+  .sw .chip{height:64px;border-radius:12px;border:1px solid rgba(57,54,47,.08);box-shadow:var(--shadow);}
+  .sw .nm{font-size:13px;margin-top:7px;font-weight:700;}
+  .sw .hex{font-family:"Space Mono",monospace;font-size:11.5px;color:var(--ink-soft);}
+
+  .typerow{display:flex;flex-wrap:wrap;gap:14px;}
+  .typecard{flex:1 1 240px;background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
+  .typecard .role{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .specimen-fraunces{font-family:"Fraunces",serif;font-size:30px;font-weight:600;margin:6px 0 2px;}
+  .specimen-pinyon{font-family:"Pinyon Script",cursive;font-size:42px;color:var(--sky-deep);line-height:1;margin:4px 0;}
+  .specimen-mono{font-family:"Space Mono",monospace;font-size:18px;letter-spacing:.04em;margin:8px 0 2px;}
+  .specimen-nunito{font-family:"Nunito Sans";font-size:18px;margin:6px 0 2px;}
+  .note{font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
+
+  .two{display:flex;flex-wrap:wrap;gap:18px;}
+  .two > div{flex:1 1 320px;}
+
+  ul.tight{margin:8px 0 14px;padding-left:20px;}
+  ul.tight li{margin:5px 0;}
+
+  blockquote{
+    margin:14px 0;padding:14px 18px;border-left:3px solid var(--lemon);
+    background:var(--cream-2);border-radius:0 12px 12px 0;font-size:16px;
+  }
+  blockquote .who{font-family:"Space Mono",monospace;font-size:11.5px;color:var(--ink-soft);letter-spacing:.08em;text-transform:uppercase;display:block;margin-top:6px;}
+
+  .callout{
+    background:linear-gradient(180deg, rgba(159,203,227,.18), rgba(255,253,245,0));
+    border:1px solid var(--sky);border-radius:16px;padding:20px 22px;margin:16px 0;
+  }
+  .checklist{list-style:none;padding:0;margin:8px 0;}
+  .checklist li{padding:9px 0 9px 30px;position:relative;border-bottom:1px dashed var(--line);}
+  .checklist li::before{content:"✈";position:absolute;left:0;top:9px;color:var(--sky-deep);}
+  .checklist li:last-child{border-bottom:0;}
+  .checklist b{display:block;}
+
+  footer{padding:34px 0 70px;color:var(--ink-soft);font-size:14px;text-align:center;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;font-family:"Space Mono",monospace;
+    font-size:12px;letter-spacing:.08em;background:var(--cream-2);border:1px solid var(--line);
+    border-radius:999px;padding:7px 14px;color:var(--ink);
+  }
+  @media(max-width:560px){
+    h1{font-size:34px;} .specimen-fraunces{font-size:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Creative Strategy · One-Page Site · Built in Svelte</p>
+    <h1>LittleOneLanding.com</h1>
+    <p class="sub">A sunny little airfield where one very important passenger is cleared for landing — with a fresh-squeezed twist and a four-legged head of security.</p>
+    <div class="flightstrip">
+      <span>THEME&nbsp; <b>Vintage Air Park</b></span>
+      <span>ACCENT&nbsp; <b>Lemon "Squeeze You"</b></span>
+      <span>SECURITY&nbsp; <b>Finn · K-9</b></span>
+      <span>PAGES&nbsp; <b>One</b></span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">01</span> The Big Idea</h2>
+    <p class="lead">One world ties all three ideas together: <strong>a charming vintage airfield on a bright, lemon-yellow day.</strong> Everything on the page belongs at that airfield, so the themes never feel stapled together — they live in the same place.</p>
+    <p>Three things make the blend click:</p>
+    <div class="card">
+      <h3>1. "Landing" already means two things</h3>
+      <p>A plane comes in for a <em>landing</em>; a baby is <em>landing</em> too. The domain name does the heavy lifting before a single word of copy. The whole site is the arrivals board for one tiny, long-awaited flight.</p>
+    </div>
+    <div class="card">
+      <h3>2. Lemon-yellow is also classic aviation</h3>
+      <p>The most beloved little plane in the world — the Piper J-3 Cub — is famously <strong>lemon yellow</strong>. So the citrus palette and the airfield palette are the <em>same</em> palette. That's exactly why a "light citrus accent" works: the sunny yellow is already doing the lemon's job in every section, so actual lemons only need to appear once.</p>
+    </div>
+    <div class="card">
+      <h3>3. "Squeeze you" is what you do when someone lands</h3>
+      <p>When a flight lands, you throw your arms open and <em>squeeze</em>. So <span class="accent">"we can't wait to squeeze you"</span> bridges the plane (landing) and the lemon (squeeze) through the most human thing in the world — hugging the baby. It earns its place as the emotional headline.</p>
+    </div>
+    <div class="card">
+      <h3>4. Finn isn't a guest — he works here</h3>
+      <p>Detection dogs <em>are</em> airport security. Making Finn the airfield's Head of K-9 Security doesn't fight the theme; he's a native of it. He gets one dedicated, scene-stealing section and a quiet "Secured by Finn" badge in the footer.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">02</span> The Three Threads, Balanced</h2>
+    <p>Per your direction: air park leads, lemon is a light accent, Finn gets one section.</p>
+    <table>
+      <thead><tr><th>Thread</th><th>Role</th><th>Where it shows up</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pill sky">Headliner</span><br><b>Vintage Air Park</b></td>
+          <td>The whole world. Structure, names, motifs, voice.</td>
+          <td>Every section — boarding pass, flight plan, runway, departure board, navigation.</td>
+        </tr>
+        <tr>
+          <td><span class="pill">Light accent</span><br><b>Lemon "Squeeze You"</b></td>
+          <td>The sunny palette everywhere + one literal lemon moment.</td>
+          <td>Hero tagline, the yellow throughout, and the "Fresh-Squeezed" refreshment block.</td>
+        </tr>
+        <tr>
+          <td><span class="pill sage">One section</span><br><b>Finn, K-9 Security</b></td>
+          <td>A self-contained comic beat + a footer easter egg.</td>
+          <td>"Airport Security" section; "Secured by Finn" badge in the footer.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">03</span> Naming &amp; Voice</h2>
+    <p>The trick to a themed site is a consistent <strong>translation layer</strong>: every ordinary baby-shower element gets an airfield name. Keep it warm and light — a friendly gate-agent voice, never a pun overload.</p>
+    <h3>Translation glossary</h3>
+    <table>
+      <thead><tr><th>Ordinary</th><th></th><th>On the airfield</th></tr></thead>
+      <tbody>
+        <tr><td class="term">RSVP</td><td class="arrow">→</td><td class="new">Check In / Confirm Your Seat</td></tr>
+        <tr><td class="term">Event details</td><td class="arrow">→</td><td class="new">Your Boarding Pass</td></tr>
+        <tr><td class="term">Schedule</td><td class="arrow">→</td><td class="new">Today's Flight Plan</td></tr>
+        <tr><td class="term">Registry</td><td class="arrow">→</td><td class="new">Pack the Cargo Hold / Care Package</td></tr>
+        <tr><td class="term">Directions</td><td class="arrow">→</td><td class="new">Flight Path &amp; Ground Control</td></tr>
+        <tr><td class="term">Hosts</td><td class="arrow">→</td><td class="new">Ground Crew / Air Traffic Control</td></tr>
+        <tr><td class="term">Guests</td><td class="arrow">→</td><td class="new">Passengers</td></tr>
+        <tr><td class="term">Dress code</td><td class="arrow">→</td><td class="new">Flight Attire</td></tr>
+        <tr><td class="term">RSVP deadline</td><td class="arrow">→</td><td class="new">Boarding Closes</td></tr>
+        <tr><td class="term">Refreshments</td><td class="arrow">→</td><td class="new">In-Flight Refreshments</td></tr>
+        <tr><td class="term">Security / house rules</td><td class="arrow">→</td><td class="new">Finn, Head of K-9 Security</td></tr>
+      </tbody>
+    </table>
+    <h3>Voice samples</h3>
+    <blockquote>"Ladies and gentlemen, please fasten your seatbelts — a very important little passenger is inbound."<span class="who">Hero / announcer voice</span></blockquote>
+    <blockquote>"This is your final boarding call. Seats are filling up — check in below."<span class="who">RSVP nudge</span></blockquote>
+    <blockquote>"All passengers will be screened for treats. Belly rubs are mandatory."<span class="who">Finn, Security</span></blockquote>
+    <p class="note">Rule of thumb: one playful line per section, then plain and clear for the actual logistics. The theme should never make a guest hunt for the address or the time.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">04</span> Site Structure</h2>
+    <p>A single scrolling page with a slim sticky nav. A dotted "flight path" line threads down the page with a little plane following it, connecting each stop. Order:</p>
+    <div class="floor">
+      <div class="stop">
+        <h4>Hero — Cleared for Landing</h4>
+        <div class="alias">anchor: #top</div>
+        <p>The emotional opener. Big tagline <em>"We can't wait to squeeze you,"</em> the baby's arrival line, date + airfield, and a primary <strong>Check In</strong> button. Yellow prop plane, soft clouds, sunny sky.</p>
+      </div>
+      <div class="stop">
+        <h4>Your Boarding Pass — the what / when / where</h4>
+        <div class="alias">anchor: #details</div>
+        <p>The single most important block, styled as a tear-off boarding pass: Passenger, Flight (Baby Shower), Date, Time, Gate (address), Flight Attire, Boarding Closes. Crystal clear, theme second.</p>
+      </div>
+      <div class="stop">
+        <h4>Today's Flight Plan — the itinerary</h4>
+        <div class="alias">anchor: #plan</div>
+        <p>A light timeline along the flight path: Boarding (arrive &amp; mingle) → Taxi (nibbles) → Take-Off (games) → Cruising Altitude (food &amp; cake) → Descent (gifts &amp; gratitude).</p>
+      </div>
+      <div class="stop">
+        <h4>Airport Security — Meet Finn</h4>
+        <div class="alias">anchor: #security</div>
+        <p>The dedicated Finn beat. His K-9 ID badge, a goofy bio, and any gentle "house rules" delivered in his voice. Contained to one section so the gag lands and doesn't wear out.</p>
+      </div>
+      <div class="stop">
+        <h4>Pack the Cargo Hold — registry</h4>
+        <div class="alias">anchor: #registry</div>
+        <p>"Help us stock the cabin for our littlest passenger." Registry links styled as luggage tags. (Inspo registry was Pottery Barn Kids — swap in yours.)</p>
+      </div>
+      <div class="stop">
+        <h4>Fresh-Squeezed at the Airfield — the lemon moment</h4>
+        <div class="alias">anchor: #refreshments</div>
+        <p>The one place real lemons appear. The runway lemonade stand, the signature sip, and a reprise of <em>"we can't wait to squeeze you."</em> This is where the citrus accent pays off.</p>
+      </div>
+      <div class="stop">
+        <h4>Check In — RSVP</h4>
+        <div class="alias">anchor: #rsvp</div>
+        <p>"Confirm your seat." Name, number of passengers, dietary notes, a message to the family, and the <strong>Boarding Closes</strong> date. Simple form.</p>
+      </div>
+      <div class="stop">
+        <h4>Flight Path &amp; Ground Control — getting there</h4>
+        <div class="alias">anchor: #navigation</div>
+        <p>Address, map, parking, and a "Ground Crew" contact for questions. Compass rose / runway map motif.</p>
+      </div>
+      <div class="stop">
+        <h4>Footer — Cleared by the Tower</h4>
+        <div class="alias">anchor: #footer</div>
+        <p>Hosts, date reprise, event hashtag, and the quiet <strong>"Secured by Finn · K-9 Unit"</strong> badge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">05</span> Visual Direction</h2>
+    <h3>Palette — sunny airfield (gender-neutral)</h3>
+    <p class="note">Matches the inspiration: warm, sunny, and neutral. Easy to nudge warmer or cooler if you're revealing a color later.</p>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F4D35E"></div><div class="nm">Cub Yellow</div><div class="hex">#F4D35E</div></div>
+      <div class="sw"><div class="chip" style="background:#FBEFB8"></div><div class="nm">Buttercream</div><div class="hex">#FBEFB8</div></div>
+      <div class="sw"><div class="chip" style="background:#9FCBE3"></div><div class="nm">Airfield Sky</div><div class="hex">#9FCBE3</div></div>
+      <div class="sw"><div class="chip" style="background:#A3B18A"></div><div class="nm">Leaf / Grass</div><div class="hex">#A3B18A</div></div>
+      <div class="sw"><div class="chip" style="background:#D9C297"></div><div class="nm">Kraft Tag</div><div class="hex">#D9C297</div></div>
+      <div class="sw"><div class="chip" style="background:#FFFDF5;border:1px solid #E7DFC8"></div><div class="nm">Paper</div><div class="hex">#FFFDF5</div></div>
+      <div class="sw"><div class="chip" style="background:#39362F"></div><div class="nm">Ink</div><div class="hex">#39362F</div></div>
+    </div>
+
+    <h3>Type system — three voices</h3>
+    <div class="typerow">
+      <div class="typecard">
+        <div class="role">Emotional / accent</div>
+        <div class="specimen-pinyon">squeeze you</div>
+        <div class="note"><b>Pinyon Script</b> — the gold-script feel from the inspo. Names &amp; the tagline only.</div>
+      </div>
+      <div class="typecard">
+        <div class="role">Headings / body</div>
+        <div class="specimen-fraunces">Cleared for landing</div>
+        <div class="note"><b>Fraunces</b> — a warm vintage serif. Carries most of the page.</div>
+      </div>
+      <div class="typecard">
+        <div class="role">Official / signage</div>
+        <div class="specimen-mono">GATE&nbsp;·&nbsp;4:00&nbsp;PM</div>
+        <div class="note"><b>Space Mono</b> — boarding passes, departure board, luggage tags, labels.</div>
+      </div>
+    </div>
+
+    <h3>Recurring motifs</h3>
+    <div class="two">
+      <div>
+        <ul class="tight">
+          <li>Dotted flight-path line + a little plane following it down the page</li>
+          <li>Yellow Piper Cub prop plane (the lemon ↔ aviation bridge)</li>
+          <li>Boarding pass &amp; tear-off stub</li>
+          <li>Split-flap departure board for the at-a-glance details</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="tight">
+          <li>Soft clouds, sunny gradient sky</li>
+          <li>Luggage tags (registry, RSVP)</li>
+          <li>Runway with dashed centerline</li>
+          <li>Finn's winged paw-print K-9 badge; lemons &amp; blossoms (refreshment block only); compass rose (directions)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">06</span> Spotlight — The Finn Section</h2>
+    <div class="callout">
+      <p style="margin:0 0 10px"><span class="pill sage">Airport Security</span></p>
+      <p><strong>Header:</strong> "All flights secured by our Head of K-9 Security."</p>
+      <p><strong>Format:</strong> a security ID badge / lanyard card with Finn's photo.</p>
+      <table style="margin-top:6px">
+        <tbody>
+          <tr><td class="term">NAME</td><td>Finn</td></tr>
+          <tr><td class="term">TITLE</td><td>Head of Security, K-9 Unit</td></tr>
+          <tr><td class="term">CLEARANCE</td><td>Very Good Boy (Level 11)</td></tr>
+          <tr><td class="term">SPECIALTY</td><td>Treat detection · perimeter naps · greeting</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px"><strong>Bio line:</strong> "Finn personally screens every guest for belly rubs and inspects all snacks for quality. Please have treats ready for inspection. He is not TSA — he's <em>Tail-wagging Security Assistance.</em>"</p>
+      <p style="margin:6px 0 0"><strong>Working double-duty:</strong> any gentle house rules (allergies, "please latch the gate," shoes-off, etc.) can ride along here in Finn's voice — useful info wrapped in the joke.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">07</span> Spotlight — The Lemonade Moment</h2>
+    <div class="callout" style="background:linear-gradient(180deg, rgba(244,211,94,.22), rgba(255,253,245,0));border-color:#ecd98a">
+      <p style="margin:0 0 10px"><span class="pill">Fresh-Squeezed at the Airfield</span></p>
+      <p>This is the single block where real lemons show up, so the citrus reads as a deliberate grace note rather than a competing theme.</p>
+      <ul class="tight">
+        <li><strong>Headline:</strong> "We can't wait to squeeze you" — reprised here as the payoff.</li>
+        <li><strong>Sub:</strong> "Cool off at the runway lemonade stand — fresh-squeezed, all afternoon."</li>
+        <li><strong>Visual:</strong> a sunny lemonade-stand / citrus cluster; lemon-blossom accents.</li>
+        <li><strong>Optional:</strong> "Squeeze the day" as a tiny tagline on a cup illustration.</li>
+      </ul>
+      <p style="margin:6px 0 0" class="note">If you'd rather, this block can merge into the Flight Plan as the "in-flight refreshment" stop — but giving it its own beat is what makes the inspiration-photo pun sing.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">08</span> Copy Starters</h2>
+    <h3>Hero options</h3>
+    <div class="card">
+      <p style="margin:0"><b>A — tagline-led (recommended):</b><br>
+      <span class="accent" style="font-size:1.9em">We can't wait to squeeze you</span><br>
+      <span style="font-family:'Fraunces',serif;font-size:18px">Baby [Surname] is cleared for landing.</span><br>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--ink-soft)">[SAT · APR 22 · 4:00 PM] · [The Air Park]</span></p>
+    </div>
+    <div class="card">
+      <p style="margin:0"><b>B — arrivals-board-led:</b><br>
+      <span style="font-family:'Fraunces',serif;font-size:24px;font-weight:600">Now arriving: one little one.</span><br>
+      <span style="color:var(--ink-soft)">We can't wait to squeeze you. Join us as we welcome Baby [Surname].</span></p>
+    </div>
+    <h3>Microcopy bank</h3>
+    <ul class="tight">
+      <li><b>Button:</b> "Check In" · "Confirm My Seat" · "Reserve My Spot on the Flight"</li>
+      <li><b>RSVP deadline:</b> "Boarding closes [date]."</li>
+      <li><b>Registry:</b> "Help us pack for the little one." · "Cargo manifest →"</li>
+      <li><b>Directions:</b> "Plot your flight path." · "Ground crew on standby for questions."</li>
+      <li><b>Footer:</b> "Cleared by the Tower." · "Secured by Finn, K-9 Unit."</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">09</span> Build &amp; Handoff Notes</h2>
+    <p>For the eventual Svelte build (hand this to Claude Code — Cowork stays out of the repo):</p>
+    <ul class="tight">
+      <li><strong>One route, component per section:</strong> <span class="term">Hero, BoardingPass, FlightPlan, Security, Registry, Refreshments, Rsvp, Navigation, Footer</span> — composed in <span class="term">+page.svelte</span>.</li>
+      <li><strong>Content in one place:</strong> a single <span class="term">event.js</span>/<span class="term">+page.js</span> data object (names, date, address, registry URLs, RSVP target) so nothing is hard-coded in markup.</li>
+      <li><strong>Design tokens:</strong> drop the palette + the three font families into CSS custom properties / <span class="term">app.css</span> (see Section 05).</li>
+      <li><strong>Motion (light):</strong> the plane-on-flight-path can be a scroll-linked SVG; respect <span class="term">prefers-reduced-motion</span>.</li>
+      <li><strong>RSVP:</strong> decide the mechanism — mailto, Google Form embed, Formspree, or a small Supabase table. Affects whether this stays fully static.</li>
+      <li><strong>Accessibility:</strong> the theme is decorative; keep real date/time/address as plain, selectable, screen-reader-friendly text, not baked into images.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2><span class="n">10</span> What I Need From You</h2>
+    <p>To turn the placeholders into the real thing:</p>
+    <ul class="checklist">
+      <li><b>Names</b> — baby's name (or surname / "Baby [X]"), and the hosts / parents-to-be.</li>
+      <li><b>The logistics</b> — date, start time, and the air park's name + address.</li>
+      <li><b>Registry</b> — which registries, and the links.</li>
+      <li><b>RSVP method</b> — form, email, or text? And the "boarding closes" date.</li>
+      <li><b>Photos</b> — a great shot of Finn (for his badge) and optionally the parents-to-be.</li>
+      <li><b>Lemon dial</b> — confirm "light accent," or tell me to turn the citrus up/down.</li>
+      <li><b>Any house rules</b> — allergies, parking notes, gift preferences — I'll route them through Finn.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="badge">🐾 Secured by Finn · K-9 Unit</span>
+    <p style="margin-top:16px">Little One Landing — creative strategy &amp; layout. Static planning document; the live site will be built in Svelte.</p>
+  </div>
+</footer>
+
+</body>
+</html>

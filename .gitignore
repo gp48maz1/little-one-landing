@@ -1,0 +1,13 @@
+node_modules
+.svelte-kit
+.env
+.env.*
+!.env.example
+.DS_Store
+build
+.vercel
+.netlify
+.vscode
+.wrangler
+.dev.vars
+worker-configuration.d.ts

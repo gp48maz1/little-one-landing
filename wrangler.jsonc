@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "little-one-landing",
+  "account_id": "76f9adc0658bbf28ff6bf348957c2d4f",
+  "compatibility_date": "2026-03-10",
+  "compatibility_flags": ["nodejs_als"],
+  "main": ".svelte-kit/cloudflare/_worker.js",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".svelte-kit/cloudflare"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "RSVPS",
+      // Namespace title: little-one-landing-RSVPS (separate from iron-dad's).
+      "id": "a9173f52b4954a8a9b6ec524ba0595f4"
+    }
+  ],
+  // Side door closed: only the custom domain serves traffic, so /admin stays
+  // fully behind Cloudflare Access.
+  "workers_dev": false,
+  "preview_urls": false
+}

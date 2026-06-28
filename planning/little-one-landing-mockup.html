@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little One Landing — Visual Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lemon:#F4D35E; --lemon-deep:#E9B949; --butter:#FBEFB8;
+    --sky:#9FCBE3; --sky-soft:#C9E5F2; --sky-deep:#4E84A4; --navy:#243B4A;
+    --sage:#A3B18A; --sage-deep:#7C8C63; --kraft:#E4D2A6; --kraft-line:#C9B381;
+    --cream:#FFFDF5; --cream-2:#FAF4E4; --ink:#39362F; --ink-soft:#6E695E;
+    --line:#E7DFC8; --shadow:0 10px 34px rgba(57,54,47,.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:"Nunito Sans",system-ui,sans-serif;line-height:1.6;}
+  section{position:relative;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:"Space Mono",monospace;}
+  .center{text-align:center;}
+
+  /* sample ribbon */
+  .ribbon{background:var(--navy);color:#dff0f7;font-family:"Space Mono",monospace;
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:7px 12px;}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:30;background:rgba(255,253,245,.86);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .row{display:flex;align-items:center;justify-content:space-between;height:60px;}
+  .brand{font-family:"Fraunces",serif;font-weight:600;font-size:19px;display:flex;align-items:center;gap:9px;}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--lemon);box-shadow:0 0 0 3px var(--butter);}
+  nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;}
+  nav a{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);text-decoration:none;text-transform:uppercase;}
+  nav a:hover{color:var(--sky-deep);}
+  nav .cta{background:var(--lemon);color:#5b4a12;border:1px solid var(--lemon-deep);
+    border-radius:999px;padding:9px 16px;font-family:"Space Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;}
+  @media(max-width:760px){nav ul{display:none;}}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg, var(--sky-soft) 0%, #E7F2F6 42%, var(--cream) 100%);
+    padding:60px 0 0;overflow:hidden;
+  }
+  .hero .inner{position:relative;text-align:center;z-index:2;}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--sky-deep);margin:0 0 18px;}
+  .squeeze{font-family:"Pinyon Script",cursive;color:var(--sky-deep);font-size:78px;line-height:.9;margin:0;}
+  .arrival{font-family:"Fraunces",serif;font-weight:600;font-size:30px;margin:10px 0 4px;letter-spacing:-.01em;}
+  .arrival .name{color:var(--lemon-deep);}
+  .hero .meta{display:inline-flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px 0 6px;}
+  .hero .meta span{font-family:"Space Mono",monospace;font-size:12.5px;background:rgba(255,253,245,.8);
+    border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:var(--ink);}
+  .btn{display:inline-block;margin-top:18px;background:var(--lemon);color:#5b4a12;font-family:"Space Mono",monospace;
+    font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:14px 26px;border-radius:999px;
+    border:1px solid var(--lemon-deep);box-shadow:0 6px 18px rgba(233,185,73,.4);}
+  .cloud{position:absolute;opacity:.9;}
+  .skyscene{position:relative;height:210px;margin-top:14px;}
+  .skyscene svg{display:block;}
+  .planewrap{position:absolute;left:50%;top:0;transform:translateX(-50%);width:100%;max-width:900px;}
+
+  /* generic section heading */
+  .shead{display:flex;align-items:baseline;gap:12px;margin:0 0 6px;}
+  .shead .n{font-family:"Space Mono",monospace;font-size:12px;color:var(--sky-deep);border:1px solid var(--sky);border-radius:6px;padding:2px 8px;}
+  .shead h2{font-family:"Fraunces",serif;font-weight:600;font-size:28px;margin:0;letter-spacing:-.01em;}
+  .ssub{color:var(--ink-soft);margin:0 0 26px;max-width:620px;}
+  .pad{padding:66px 0;}
+  .pad-sm{padding:48px 0;}
+
+  /* BOARDING PASS */
+  .boarding{background:var(--cream-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .pass{display:flex;background:var(--cream);border:1px solid var(--kraft-line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);}
+  .pass .main{flex:1;padding:26px 30px;}
+  .pass .barhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:14px;margin-bottom:18px;}
+  .pass .barhead .air{font-family:"Fraunces",serif;font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px;}
+  .pass .barhead .cls{font-family:"Space Mono",monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 14px;}
+  .grid .f .k{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .grid .f .v{font-family:"Fraunces",serif;font-size:18px;font-weight:600;margin-top:2px;}
+  .pass .stub{width:230px;background:repeating-linear-gradient(180deg,var(--kraft) 0 22px,#e9d9af 22px 24px);
+    border-left:2px dashed var(--kraft-line);padding:24px 22px;position:relative;}
+  .pass .stub::before,.pass .stub::after{content:"";position:absolute;left:-11px;width:20px;height:20px;border-radius:50%;background:var(--cream-2);border:1px solid var(--kraft-line);}
+  .pass .stub::before{top:-11px;}.pass .stub::after{bottom:-11px;}
+  .stub .k{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6b5a2a;}
+  .stub .v{font-family:"Fraunces",serif;font-weight:700;font-size:17px;margin:1px 0 14px;color:#4a3f20;}
+  .stub .seat{font-family:"Space Mono",monospace;font-size:40px;font-weight:700;color:#4a3f20;letter-spacing:.04em;}
+  .barcode{height:42px;margin-top:14px;background:repeating-linear-gradient(90deg,#4a3f20 0 2px,transparent 2px 4px,#4a3f20 4px 5px,transparent 5px 9px);}
+  @media(max-width:760px){.pass{flex-direction:column;}.pass .stub{width:auto;border-left:0;border-top:2px dashed var(--kraft-line);}
+    .pass .stub::before{top:-11px;left:50%;}.pass .stub::after{bottom:auto;top:-11px;left:auto;right:50%;}
+    .grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* DEPARTURE BOARD */
+  .board{background:var(--navy);border-radius:16px;padding:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;box-shadow:var(--shadow);margin-top:22px;}
+  .tile{background:#16242e;border-radius:10px;padding:14px 12px;text-align:center;border:1px solid #31505f;}
+  .tile .lbl{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em;color:#7fb0c6;text-transform:uppercase;}
+  .tile .big{font-family:"Space Mono",monospace;font-weight:700;font-size:21px;color:var(--lemon);margin-top:6px;letter-spacing:.02em;}
+  @media(max-width:620px){.board{grid-template-columns:repeat(2,1fr);}}
+
+  /* FLIGHT PLAN */
+  .plan{position:relative;margin-top:10px;}
+  .plan .line{position:absolute;left:23px;top:8px;bottom:8px;border-left:2px dashed var(--sky);}
+  .stop{position:relative;padding:14px 0 14px 64px;}
+  .stop .dot{position:absolute;left:8px;top:16px;width:32px;height:32px;border-radius:50%;background:var(--cream);
+    border:2px solid var(--sky);display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .stop h4{font-family:"Fraunces",serif;font-weight:600;font-size:18px;margin:0;}
+  .stop .t{font-family:"Space Mono",monospace;font-size:12px;color:var(--sky-deep);}
+  .stop p{margin:3px 0 0;color:var(--ink-soft);font-size:15px;}
+
+  /* SECURITY / FINN */
+  .security{background:linear-gradient(180deg,var(--cream) 0%, #F2F6EE 100%);border-top:1px solid var(--line);}
+  .lanyard{max-width:430px;margin:0 auto;background:var(--cream);border:1px solid var(--sage);border-radius:20px;
+    box-shadow:var(--shadow);overflow:hidden;}
+  .lanyard .top{background:var(--sage-deep);color:#f3f7ec;text-align:center;padding:16px 14px 26px;position:relative;}
+  .lanyard .top .hole{width:54px;height:10px;border-radius:999px;background:#2f3a23;margin:0 auto 12px;}
+  .lanyard .top .org{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+  .lanyard .top .ttl{font-family:"Fraunces",serif;font-weight:700;font-size:22px;margin-top:4px;}
+  .lanyard .body{padding:0 24px 26px;margin-top:-18px;text-align:center;}
+  .photo{width:118px;height:118px;border-radius:50%;background:radial-gradient(circle at 50% 38%, #fff 0 38%, var(--butter) 38% 100%);
+    border:5px solid var(--cream);box-shadow:0 6px 16px rgba(0,0,0,.12);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;}
+  .finnname{font-family:"Fraunces",serif;font-weight:700;font-size:24px;margin:2px 0 0;}
+  .finnrole{font-family:"Space Mono",monospace;font-size:12px;color:var(--sage-deep);letter-spacing:.06em;text-transform:uppercase;}
+  .finntable{text-align:left;margin:16px auto 0;max-width:330px;}
+  .finntable .r{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:8px 0;}
+  .finntable .r .k{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  .finntable .r .v{font-family:"Fraunces",serif;font-size:15px;font-weight:600;}
+  .finnbio{margin:16px auto 0;max-width:360px;font-size:15px;color:var(--ink-soft);}
+
+  /* REGISTRY */
+  .tags{display:flex;flex-wrap:wrap;gap:18px;margin-top:8px;}
+  .tag{flex:1 1 250px;background:var(--kraft);border:1px solid var(--kraft-line);border-radius:14px;
+    padding:20px 22px 20px 40px;position:relative;color:#4a3f20;box-shadow:var(--shadow);}
+  .tag::before{content:"";position:absolute;left:16px;top:50%;transform:translateY(-50%);width:14px;height:14px;border-radius:50%;background:var(--cream-2);border:2px solid #b59b56;}
+  .tag .k{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.8;}
+  .tag .v{font-family:"Fraunces",serif;font-weight:700;font-size:19px;margin:3px 0 2px;}
+  .tag .go{font-family:"Space Mono",monospace;font-size:12px;}
+
+  /* REFRESHMENTS / LEMON */
+  .refresh{background:linear-gradient(180deg, #FFF6CF 0%, var(--cream) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;}
+  .refresh .squeeze2{font-family:"Pinyon Script",cursive;color:var(--lemon-deep);font-size:56px;line-height:1;margin:6px 0 4px;}
+  .refresh p.s{color:#7a6212;max-width:520px;margin:0 auto;}
+  .lemons{display:flex;justify-content:center;gap:8px;margin:6px 0 18px;}
+
+  /* RSVP */
+  .rsvp .formcard{background:var(--cream);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:28px 30px;max-width:640px;margin:0 auto;}
+  .field{margin-bottom:16px;}
+  .field label{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:6px;}
+  .field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--cream-2);font-family:"Nunito Sans";font-size:15px;color:var(--ink);}
+  .field.two{display:flex;gap:14px;}.field.two > div{flex:1;}
+  .boarding-note{font-family:"Space Mono",monospace;font-size:12px;color:var(--sky-deep);text-align:center;margin-top:6px;}
+
+  /* NAVIGATION */
+  .nav2{background:var(--cream-2);border-top:1px solid var(--line);}
+  .navgrid{display:flex;flex-wrap:wrap;gap:26px;align-items:center;}
+  .navgrid .info{flex:1 1 280px;}
+  .navgrid .map{flex:1 1 300px;height:220px;border-radius:16px;border:1px solid var(--line);
+    background:
+      repeating-linear-gradient(0deg, rgba(159,203,227,.18) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(90deg, rgba(159,203,227,.18) 0 1px, transparent 1px 26px),
+      var(--cream);position:relative;overflow:hidden;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;}
+  .navgrid .map .runway{position:absolute;left:18%;top:60%;width:64%;height:14px;background:var(--ink);border-radius:8px;transform:rotate(-18deg);
+    box-shadow:0 0 0 6px rgba(57,54,47,.06);}
+  .navgrid .map .runway::after{content:"";position:absolute;left:8px;right:8px;top:50%;height:2px;transform:translateY(-50%);
+    background:repeating-linear-gradient(90deg,var(--lemon) 0 10px,transparent 10px 20px);}
+  .infoline{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;}
+  .infoline .k{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);min-width:74px;padding-top:2px;}
+  .infoline .v{font-family:"Fraunces",serif;font-size:16px;font-weight:600;}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:#cfe2ec;text-align:center;padding:48px 0 56px;}
+  footer .squeeze3{font-family:"Pinyon Script",cursive;color:var(--lemon);font-size:46px;line-height:1;margin:0 0 6px;}
+  footer .hosts{font-family:"Fraunces",serif;font-size:18px;color:#eaf3f8;margin:2px 0;}
+  footer .hash{font-family:"Space Mono",monospace;font-size:13px;color:#86b3c8;letter-spacing:.06em;margin-top:8px;}
+  .finnbadge{display:inline-flex;align-items:center;gap:9px;margin-top:22px;background:rgba(255,255,255,.06);
+    border:1px solid #3a5667;border-radius:999px;padding:9px 16px;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.06em;color:#dff0f7;}
+  .finnbadge .pw{width:20px;height:20px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+<div class="ribbon">✦ Visual mockup — sample copy &amp; placeholder names. Your real details drop straight in. ✦</div>
+
+<nav>
+  <div class="wrap row">
+    <div class="brand"><span class="dot"></span>Little One Landing</div>
+    <ul>
+      <li><a href="#details">Boarding Pass</a></li>
+      <li><a href="#plan">Flight Plan</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#registry">Cargo</a></li>
+      <li><a href="#navigation">Get There</a></li>
+    </ul>
+    <a class="cta" href="#rsvp">Check In</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap inner">
+    <p class="eyebrow">Cleared for landing · private airfield</p>
+    <p class="squeeze">We can't wait to squeeze you</p>
+    <p class="arrival">Baby <span class="name">[Surname]</span> is coming in for a landing</p>
+    <div class="meta">
+      <span>🗓 SAT · APR 22</span>
+      <span>🕓 4:00 PM</span>
+      <span>📍 [The Air Park]</span>
+    </div>
+    <br>
+    <a class="btn" href="#rsvp">Check in for the flight ✈</a>
+  </div>
+  <div class="skyscene">
+    <div class="planewrap">
+      <svg viewBox="0 0 900 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg" aria-label="Yellow plane following a dotted flight path">
+        <!-- clouds -->
+        <g fill="#ffffff" opacity="0.92">
+          <ellipse cx="120" cy="58" rx="46" ry="26"/><ellipse cx="158" cy="64" rx="34" ry="22"/><ellipse cx="86" cy="68" rx="30" ry="20"/>
+          <ellipse cx="760" cy="40" rx="40" ry="22"/><ellipse cx="792" cy="48" rx="30" ry="18"/><ellipse cx="730" cy="48" rx="26" ry="16"/>
+        </g>
+        <!-- dotted flight path arc -->
+        <path d="M40 188 Q 360 120 600 132 T 880 60" fill="none" stroke="#9FCBE3" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+        <!-- plane at the end of the path -->
+        <g transform="translate(806,70) rotate(-20)">
+          <!-- wing back -->
+          <path d="M-2 6 L34 30 L44 30 L18 6 Z" fill="#E9B949"/>
+          <!-- fuselage -->
+          <rect x="-46" y="-9" width="92" height="20" rx="10" fill="#F4D35E" stroke="#E9B949" stroke-width="2"/>
+          <!-- tail -->
+          <path d="M-46 0 L-66 -20 L-54 -1 Z" fill="#F4D35E" stroke="#E9B949" stroke-width="2"/>
+          <!-- wing front -->
+          <path d="M-2 -6 L30 -30 L42 -30 L18 -6 Z" fill="#F7DE7E" stroke="#E9B949" stroke-width="2"/>
+          <!-- window -->
+          <circle cx="22" cy="0" r="6" fill="#C9E5F2" stroke="#4E84A4" stroke-width="2"/>
+          <circle cx="4" cy="0" r="5" fill="#C9E5F2" stroke="#4E84A4" stroke-width="1.5"/>
+          <!-- prop -->
+          <rect x="46" y="-14" width="4" height="28" rx="2" fill="#7C6A2e"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- BOARDING PASS -->
+<section class="boarding pad" id="details">
+  <div class="wrap">
+    <div class="shead"><span class="n">01</span><h2>Your boarding pass</h2></div>
+    <p class="ssub">Everything you need for the day, on one little ticket.</p>
+    <div class="pass">
+      <div class="main">
+        <div class="barhead">
+          <div class="air">🛬 Little One Landing</div>
+          <div class="cls">BABY SHOWER · CLASS: VIP (Very Important Parents)</div>
+        </div>
+        <div class="grid">
+          <div class="f"><div class="k">Passenger</div><div class="v">You + 1 little guest of honor</div></div>
+          <div class="f"><div class="k">Date</div><div class="v">Sat, April 22</div></div>
+          <div class="f"><div class="k">Boarding time</div><div class="v">4:00 PM</div></div>
+          <div class="f"><div class="k">Gate</div><div class="v">[The Air Park, City]</div></div>
+          <div class="f"><div class="k">Flight attire</div><div class="v">Sunny &amp; casual</div></div>
+          <div class="f"><div class="k">Boarding closes</div><div class="v">April 10 (RSVP)</div></div>
+        </div>
+      </div>
+      <div class="stub">
+        <div class="k">Flight</div><div class="v">LOL&nbsp;001</div>
+        <div class="k">Date</div><div class="v">04 · 22</div>
+        <div class="k">Seat</div>
+        <div class="seat">2B</div>
+        <div class="barcode"></div>
+      </div>
+    </div>
+
+    <!-- DEPARTURE BOARD -->
+    <div class="board" aria-label="Departure board quick glance">
+      <div class="tile"><div class="lbl">Flight</div><div class="big">LOL 001</div></div>
+      <div class="tile"><div class="lbl">Departs</div><div class="big">4:00 PM</div></div>
+      <div class="tile"><div class="lbl">Gate</div><div class="big">AIR PARK</div></div>
+      <div class="tile"><div class="lbl">Weather</div><div class="big">☀ SUNNY</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHT PLAN -->
+<section class="pad" id="plan">
+  <div class="wrap">
+    <div class="shead"><span class="n">02</span><h2>Today's flight plan</h2></div>
+    <p class="ssub">A loose itinerary — come when you can, stay as long as you like.</p>
+    <div class="plan">
+      <div class="line"></div>
+      <div class="stop"><div class="dot">🛄</div><h4>Boarding</h4><div class="t">4:00 PM</div><p>Arrive, grab a name tag, and mingle on the tarmac.</p></div>
+      <div class="stop"><div class="dot">🥪</div><h4>Taxi to the runway</h4><div class="t">4:20 PM</div><p>Nibbles, sips, and the fresh-squeezed lemonade stand opens.</p></div>
+      <div class="stop"><div class="dot">🎈</div><h4>Take-off</h4><div class="t">4:45 PM</div><p>A few easy games — no flight experience required.</p></div>
+      <div class="stop"><div class="dot">🍰</div><h4>Cruising altitude</h4><div class="t">5:30 PM</div><p>Food, cake, and a toast to the little one.</p></div>
+      <div class="stop"><div class="dot">🎁</div><h4>Descent</h4><div class="t">6:15 PM</div><p>Gifts, gratitude, and a soft landing home.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY / FINN -->
+<section class="security pad" id="security">
+  <div class="wrap center">
+    <div class="shead" style="justify-content:center"><span class="n">03</span><h2>Airport security</h2></div>
+    <p class="ssub" style="margin-left:auto;margin-right:auto">All flights are secured by our Head of K-9 Security. Please have treats ready for inspection.</p>
+    <div class="lanyard">
+      <div class="top">
+        <div class="hole"></div>
+        <div class="org">Little One Landing · K-9 Unit</div>
+        <div class="ttl">SECURITY CLEARANCE</div>
+      </div>
+      <div class="body">
+        <div class="photo" aria-label="Photo of Finn">
+          <svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg" fill="#7C8C63">
+            <circle cx="28" cy="34" r="11"/>
+            <circle cx="14" cy="20" r="5.5"/><circle cx="42" cy="20" r="5.5"/>
+            <circle cx="6" cy="32" r="5"/><circle cx="50" cy="32" r="5"/>
+          </svg>
+        </div>
+        <div class="finnname">Finn</div>
+        <div class="finnrole">Head of Security · K-9 Unit</div>
+        <div class="finntable">
+          <div class="r"><span class="k">Clearance</span><span class="v">Very Good Boy (Lvl 11)</span></div>
+          <div class="r"><span class="k">Specialty</span><span class="v">Treat detection · greeting</span></div>
+          <div class="r"><span class="k">Status</span><span class="v">On duty (mostly napping)</span></div>
+        </div>
+        <p class="finnbio">Finn personally screens every guest for belly rubs and inspects all snacks for quality. He's not TSA — he's <em>Tail-wagging Security Assistance</em>. Gentle reminder from the boss: please latch the gate behind you. 🐾</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRY -->
+<section class="pad" id="registry">
+  <div class="wrap">
+    <div class="shead"><span class="n">04</span><h2>Pack the cargo hold</h2></div>
+    <p class="ssub">Help us stock the cabin for our littlest passenger. Tap a tag to view the registry.</p>
+    <div class="tags">
+      <div class="tag"><div class="k">Registry</div><div class="v">Pottery Barn Kids</div><div class="go">View list →</div></div>
+      <div class="tag"><div class="k">Registry</div><div class="v">[Babylist]</div><div class="go">View list →</div></div>
+      <div class="tag"><div class="k">Registry</div><div class="v">[Amazon]</div><div class="go">View list →</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REFRESHMENTS / LEMON -->
+<section class="refresh pad" id="refreshments">
+  <div class="wrap">
+    <div class="lemons" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="20" cy="22" rx="14" ry="11" fill="#F4D35E" stroke="#E9B949" stroke-width="2"/>
+        <path d="M30 14 q6 -4 8 -1 q-3 4 -8 3" fill="#A3B18A"/>
+        <circle cx="6" cy="22" r="1.6" fill="#fff"/>
+      </svg>
+      <svg width="34" height="34" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style="margin-top:8px">
+        <ellipse cx="20" cy="22" rx="13" ry="10" fill="#F7DE7E" stroke="#E9B949" stroke-width="2"/>
+        <path d="M28 15 q5 -3 7 -1 q-2 3 -7 2" fill="#A3B18A"/>
+      </svg>
+      <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="20" cy="22" rx="14" ry="11" fill="#F4D35E" stroke="#E9B949" stroke-width="2"/>
+        <path d="M30 14 q6 -4 8 -1 q-3 4 -8 3" fill="#A3B18A"/>
+        <circle cx="6" cy="22" r="1.6" fill="#fff"/>
+      </svg>
+    </div>
+    <div class="center">
+      <div class="shead" style="justify-content:center"><span class="n">05</span><h2>Fresh-squeezed at the airfield</h2></div>
+      <p class="squeeze2">we can't wait to squeeze you</p>
+      <p class="s">Cool off at the runway lemonade stand — fresh-squeezed all afternoon. When life gives you a little one… you squeeze the day. 🍋</p>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="rsvp pad" id="rsvp">
+  <div class="wrap">
+    <div class="shead" style="justify-content:center"><span class="n">06</span><h2>Check in for the flight</h2></div>
+    <p class="ssub center" style="margin-left:auto;margin-right:auto">Confirm your seat below. We can't wait to see you on the tarmac.</p>
+    <div class="formcard">
+      <div class="field"><label>Passenger name</label><input type="text" placeholder="Your name" disabled></div>
+      <div class="field two">
+        <div><label>Seats (party size)</label><select disabled><option>1</option><option>2</option><option>3</option><option>4+</option></select></div>
+        <div><label>Attending?</label><select disabled><option>Cleared for takeoff ✈</option><option>Grounded this time</option></select></div>
+      </div>
+      <div class="field"><label>Dietary notes for the galley</label><input type="text" placeholder="Allergies, preferences…" disabled></div>
+      <div class="field"><label>A note for the family</label><textarea rows="3" placeholder="Send some love…" disabled></textarea></div>
+      <a class="btn" href="#" style="display:block;text-align:center" onclick="return false;">Confirm my seat</a>
+      <p class="boarding-note">⚑ Boarding closes April 10</p>
+    </div>
+  </div>
+</section>
+
+<!-- NAVIGATION -->
+<section class="nav2 pad" id="navigation">
+  <div class="wrap">
+    <div class="shead"><span class="n">07</span><h2>Flight path &amp; ground control</h2></div>
+    <p class="ssub">How to find the airfield. Ground crew on standby for any questions.</p>
+    <div class="navgrid">
+      <div class="info">
+        <div class="infoline"><span class="k">Airfield</span><span class="v">[The Air Park]</span></div>
+        <div class="infoline"><span class="k">Address</span><span class="v">[123 Runway Rd, City, ST]</span></div>
+        <div class="infoline"><span class="k">Parking</span><span class="v">[Hangar lot, free — follow the signs]</span></div>
+        <div class="infoline"><span class="k">Ground crew</span><span class="v">[Sarah · 123-456-7890]</span></div>
+      </div>
+      <div class="map" aria-label="Stylized airfield map">
+        <div class="runway"></div>
+        <svg width="40" height="40" viewBox="0 0 40 40" style="position:absolute;top:14px;right:16px" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="17" fill="none" stroke="#4E84A4" stroke-width="2"/>
+          <path d="M20 5 L24 20 L20 35 L16 20 Z" fill="#E9B949"/>
+          <text x="20" y="3" text-anchor="middle" font-size="7" fill="#4E84A4" font-family="monospace">N</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="wrap">
+    <p class="squeeze3">see you on the runway</p>
+    <p class="hosts">With love, [Parents-to-be]</p>
+    <p class="hash">#LittleOneLanding · #ClearedForLanding</p>
+    <div class="finnbadge"><span class="pw">🐾</span> Secured by Finn · K-9 Unit</div>
+  </div>
+</footer>
+
+</body>
+</html>
